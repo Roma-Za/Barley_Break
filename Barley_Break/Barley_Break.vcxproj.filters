@@ -102,9 +102,6 @@
     <Image Include="15.bmp">
       <Filter>Файлы ресурсов</Filter>
     </Image>
-    <Image Include="bitmap19.bmp">
-      <Filter>Файлы ресурсов</Filter>
-    </Image>
     <Image Include="Barley_Break.ico">
       <Filter>Файлы ресурсов</Filter>
     </Image>
@@ -121,9 +118,6 @@
       <Filter>Файлы ресурсов</Filter>
     </Image>
     <Image Include="Приветствие программы сканирования.jpg">
-      <Filter>Файлы ресурсов</Filter>
-    </Image>
-    <Image Include="bitmap20.bmp">
       <Filter>Файлы ресурсов</Filter>
     </Image>
     <Image Include="favicon.ico">

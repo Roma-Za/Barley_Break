@@ -180,14 +180,12 @@ IDB_BITMAP15            BITMAP                  "15.bmp"
 IDB_BITMAP16            BITMAP                  "16.bmp"
 IDB_BITMAP17            BITMAP                  "nature.bmp"
 IDB_BITMAP18            BITMAP                  "ее.bmp"
-IDB_BITMAP19            BITMAP                  "bitmap19.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // BMP
 //
 
-IDR_BMP1                BMP                     "Приветствие программы сканирования.jpg"
 
 /////////////////////////////////////////////////////////////////////////////
 //

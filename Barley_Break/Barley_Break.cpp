@@ -52,7 +52,7 @@ static HBITMAP CurrentBitmap;
 BITMAP bmp;
 std::vector<int> vectorNumberBitmap;
 POINT ArrPoints[16];
-//Касательно диалога открытия файла
+
 
 OPENFILENAME ofn;       // структура станд. блока диалога
 

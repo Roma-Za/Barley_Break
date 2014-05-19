@@ -123,8 +123,6 @@
     <Image Include="8.bmp" />
     <Image Include="9.bmp" />
     <Image Include="Barley_Break.ico" />
-    <Image Include="bitmap19.bmp" />
-    <Image Include="bitmap20.bmp" />
     <Image Include="favicon.ico" />
     <Image Include="IF_Folder.ico" />
     <Image Include="nature.bmp" />
