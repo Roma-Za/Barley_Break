@@ -69,7 +69,6 @@ void DistributeBitmaps();
 bool ItsWin();
 HBITMAP ULLoadImage(LPCTSTR szResource);
 
-
 int APIENTRY _tWinMain(HINSTANCE hInstance,
 					   HINSTANCE hPrevInstance,
 					   LPTSTR    lpCmdLine,
