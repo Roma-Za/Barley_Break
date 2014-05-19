@@ -55,6 +55,7 @@ POINT ArrPoints[16];
 
 
 OPENFILENAME ofn;       // структура станд. блока диалога
+TCHAR szFile[260] = {0};       // буфер для имени файла
 
 // Отправить объявления функций, включенных в этот модуль кода:
 ATOM				MyRegisterClass(HINSTANCE hInstance);
@@ -273,6 +274,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				double scaleW = (double) nWidth / DISPLAY_WIDTH; 
 				double scaleH = (double) nHeight / DISPLAY_HEIGHT;
 				double maxScale = scaleW > scaleH ? scaleW : scaleH;
+				maxScale = maxScale > 1 ? maxScale : 1;
 
 				DWORD lParam = (int)(nWidth/maxScale) | ((int)(nHeight/maxScale)<<16);
 				WPARAM wParam = (WPARAM)SIZE_RESTORED;
@@ -322,7 +324,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 	case WM_CREATE:
 		{
-			TCHAR szFile[260] = {0};       // буфер для имени файла
 			// Инициализация структуры OPENFILENAME
 			ZeroMemory(&ofn, sizeof(OPENFILENAME));
 			ofn.lStructSize = sizeof(OPENFILENAME);
