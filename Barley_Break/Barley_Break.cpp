@@ -1,4 +1,4 @@
-// Barley_Break.cpp: определяет точку входа для приложения.
+п»ї// Barley_Break.cpp: РѕРїСЂРµРґРµР»СЏРµС‚ С‚РѕС‡РєСѓ РІС…РѕРґР° РґР»СЏ РїСЂРёР»РѕР¶РµРЅРёСЏ.
 //
 
 #include "stdafx.h"
@@ -9,10 +9,10 @@
 #define SIZE_CLIENT_SQUARE 400
 #define BUTTON_SIZE 100
 
-// Глобальные переменные:
-HINSTANCE hInst;								// текущий экземпляр
-TCHAR szTitle[MAX_LOADSTRING];					// Текст строки заголовка
-TCHAR szWindowClass[MAX_LOADSTRING];			// имя класса главного окна
+// Р“Р»РѕР±Р°Р»СЊРЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ:
+HINSTANCE hInst;								// С‚РµРєСѓС‰РёР№ СЌРєР·РµРјРїР»СЏСЂ
+TCHAR szTitle[MAX_LOADSTRING];					// РўРµРєСЃС‚ СЃС‚СЂРѕРєРё Р·Р°РіРѕР»РѕРІРєР°
+TCHAR szWindowClass[MAX_LOADSTRING];			// РёРјСЏ РєР»Р°СЃСЃР° РіР»Р°РІРЅРѕРіРѕ РѕРєРЅР°
 HWND ButtonEmpty = NULL;
 bool isClassic = true;
 bool isSelectionOfPictures = false;
@@ -22,13 +22,13 @@ int klick = 0;
 int size;
 int NumBitmap; 
 int xStart,yStart,xFinish,yFinish;
-RECT rcWindow = {0, 0, SIZE_CLIENT_SQUARE, SIZE_CLIENT_SQUARE}; //размер клиентской области окна при запуске игры или при переходе к классическому варианту пятнашек
+RECT rcWindow = {0, 0, SIZE_CLIENT_SQUARE, SIZE_CLIENT_SQUARE}; //СЂР°Р·РјРµСЂ РєР»РёРµРЅС‚СЃРєРѕР№ РѕР±Р»Р°СЃС‚Рё РѕРєРЅР° РїСЂРё Р·Р°РїСѓСЃРєРµ РёРіСЂС‹ РёР»Рё РїСЂРё РїРµСЂРµС…РѕРґРµ Рє РєР»Р°СЃСЃРёС‡РµСЃРєРѕРјСѓ РІР°СЂРёР°РЅС‚Сѓ РїСЏС‚РЅР°С€РµРє
 RECT clientImageRect;
 HWND hWnd;
 HWND OK = NULL;
-HWND CANСEL = NULL;
+HWND CANРЎEL = NULL;
 HWND hwndButtons [16] ={0};
-//загрузить изображения фишек из ресурсов
+//Р·Р°РіСЂСѓР·РёС‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ С„РёС€РµРє РёР· СЂРµСЃСѓСЂСЃРѕРІ
 static HBITMAP hBitmaps[16] = { LoadBitmap( GetModuleHandle(NULL), MAKEINTRESOURCE(IDB_BITMAP1) ), 
 	LoadBitmap( GetModuleHandle(NULL), MAKEINTRESOURCE(IDB_BITMAP2) ), 
 	LoadBitmap( GetModuleHandle(NULL), MAKEINTRESOURCE(IDB_BITMAP3) ),
@@ -53,10 +53,10 @@ std::vector<int> vectorNumberBitmap;
 POINT ArrPoints[16];
 
 
-OPENFILENAME ofn;				// структура станд. блока диалога
-TCHAR szFile[260] = {0};       // буфер для имени файла
+OPENFILENAME ofn;				// СЃС‚СЂСѓРєС‚СѓСЂР° СЃС‚Р°РЅРґ. Р±Р»РѕРєР° РґРёР°Р»РѕРіР°
+TCHAR szFile[260] = {0};       // Р±СѓС„РµСЂ РґР»СЏ РёРјРµРЅРё С„Р°Р№Р»Р°
 
-// Отправить объявления функций, включенных в этот модуль кода:
+// РћС‚РїСЂР°РІРёС‚СЊ РѕР±СЉСЏРІР»РµРЅРёСЏ С„СѓРЅРєС†РёР№, РІРєР»СЋС‡РµРЅРЅС‹С… РІ СЌС‚РѕС‚ РјРѕРґСѓР»СЊ РєРѕРґР°:
 ATOM				MyRegisterClass(HINSTANCE hInstance);
 BOOL				InitInstance(HINSTANCE, int);
 LRESULT CALLBACK	WndProc(HWND, UINT, WPARAM, LPARAM);
@@ -78,15 +78,15 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 
 	MSG msg;
 	HACCEL hAccelTable;
-	//Регистрируем кастомный контрол игральной фишкм
+	//Р РµРіРёСЃС‚СЂРёСЂСѓРµРј РєР°СЃС‚РѕРјРЅС‹Р№ РєРѕРЅС‚СЂРѕР» РёРіСЂР°Р»СЊРЅРѕР№ С„РёС€РєРј
 	CustomRegister();
 
-	// Инициализация глобальных строк
+	// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РіР»РѕР±Р°Р»СЊРЅС‹С… СЃС‚СЂРѕРє
 	LoadString(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
 	LoadString(hInstance, IDC_BARLEY_BREAK, szWindowClass, MAX_LOADSTRING);
 	MyRegisterClass(hInstance);
 
-	// Выполнить инициализацию приложения:
+	// Р’С‹РїРѕР»РЅРёС‚СЊ РёРЅРёС†РёР°Р»РёР·Р°С†РёСЋ РїСЂРёР»РѕР¶РµРЅРёСЏ:
 	if (!InitInstance (hInstance, nCmdShow))
 	{
 		return FALSE;
@@ -94,11 +94,11 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 
 	hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_BARLEY_BREAK));
 
-	// Цикл основного сообщения:
+	// Р¦РёРєР» РѕСЃРЅРѕРІРЅРѕРіРѕ СЃРѕРѕР±С‰РµРЅРёСЏ:
 
 	while (GetMessage (&msg, NULL, 0, 0))
 	{
-		//ловим нажатие левой кнопки мыши на батонах
+		//Р»РѕРІРёРј РЅР°Р¶Р°С‚РёРµ Р»РµРІРѕР№ РєРЅРѕРїРєРё РјС‹С€Рё РЅР° Р±Р°С‚РѕРЅР°С…
 		if (msg.hwnd == hwndButtons[0]||msg.hwnd == hwndButtons[1]||msg.hwnd == hwndButtons[2]||msg.hwnd == hwndButtons[3]||
 			msg.hwnd == hwndButtons[4]||msg.hwnd == hwndButtons[5]||msg.hwnd == hwndButtons[6]||msg.hwnd == hwndButtons[7]||
 			msg.hwnd == hwndButtons[8]||msg.hwnd == hwndButtons[9]||msg.hwnd == hwndButtons[10]||msg.hwnd == hwndButtons[11]||
@@ -119,17 +119,17 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 
 
 //
-//  ФУНКЦИЯ: MyRegisterClass()
+//  Р¤РЈРќРљР¦РРЇ: MyRegisterClass()
 //
-//  НАЗНАЧЕНИЕ: регистрирует класс окна.
+//  РќРђР—РќРђР§Р•РќРР•: СЂРµРіРёСЃС‚СЂРёСЂСѓРµС‚ РєР»Р°СЃСЃ РѕРєРЅР°.
 //
-//  КОММЕНТАРИИ:
+//  РљРћРњРњР•РќРўРђР РР:
 //
-//    Эта функция и ее использование необходимы только в случае, если нужно, чтобы данный код
-//    был совместим с системами Win32, не имеющими функции RegisterClassEx'
-//    которая была добавлена в Windows 95. Вызов этой функции важен для того,
-//    чтобы приложение получило "качественные" мелкие значки и установило связь
-//    с ними.
+//    Р­С‚Р° С„СѓРЅРєС†РёСЏ Рё РµРµ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РЅРµРѕР±С…РѕРґРёРјС‹ С‚РѕР»СЊРєРѕ РІ СЃР»СѓС‡Р°Рµ, РµСЃР»Рё РЅСѓР¶РЅРѕ, С‡С‚РѕР±С‹ РґР°РЅРЅС‹Р№ РєРѕРґ
+//    Р±С‹Р» СЃРѕРІРјРµСЃС‚РёРј СЃ СЃРёСЃС‚РµРјР°РјРё Win32, РЅРµ РёРјРµСЋС‰РёРјРё С„СѓРЅРєС†РёРё RegisterClassEx'
+//    РєРѕС‚РѕСЂР°СЏ Р±С‹Р»Р° РґРѕР±Р°РІР»РµРЅР° РІ Windows 95. Р’С‹Р·РѕРІ СЌС‚РѕР№ С„СѓРЅРєС†РёРё РІР°Р¶РµРЅ РґР»СЏ С‚РѕРіРѕ,
+//    С‡С‚РѕР±С‹ РїСЂРёР»РѕР¶РµРЅРёРµ РїРѕР»СѓС‡РёР»Рѕ "РєР°С‡РµСЃС‚РІРµРЅРЅС‹Рµ" РјРµР»РєРёРµ Р·РЅР°С‡РєРё Рё СѓСЃС‚Р°РЅРѕРІРёР»Рѕ СЃРІСЏР·СЊ
+//    СЃ РЅРёРјРё.
 //
 ATOM MyRegisterClass(HINSTANCE hInstance)
 {
@@ -153,21 +153,21 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 }
 
 //
-//   ФУНКЦИЯ: InitInstance(HINSTANCE, int)
+//   Р¤РЈРќРљР¦РРЇ: InitInstance(HINSTANCE, int)
 //
-//   НАЗНАЧЕНИЕ: сохраняет обработку экземпляра и создает главное окно.
+//   РќРђР—РќРђР§Р•РќРР•: СЃРѕС…СЂР°РЅСЏРµС‚ РѕР±СЂР°Р±РѕС‚РєСѓ СЌРєР·РµРјРїР»СЏСЂР° Рё СЃРѕР·РґР°РµС‚ РіР»Р°РІРЅРѕРµ РѕРєРЅРѕ.
 //
-//   КОММЕНТАРИИ:
+//   РљРћРњРњР•РќРўРђР РР:
 //
-//        В данной функции дескриптор экземпляра сохраняется в глобальной переменной, а также
-//        создается и выводится на экран главное окно программы.
+//        Р’ РґР°РЅРЅРѕР№ С„СѓРЅРєС†РёРё РґРµСЃРєСЂРёРїС‚РѕСЂ СЌРєР·РµРјРїР»СЏСЂР° СЃРѕС…СЂР°РЅСЏРµС‚СЃСЏ РІ РіР»РѕР±Р°Р»СЊРЅРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№, Р° С‚Р°РєР¶Рµ
+//        СЃРѕР·РґР°РµС‚СЃСЏ Рё РІС‹РІРѕРґРёС‚СЃСЏ РЅР° СЌРєСЂР°РЅ РіР»Р°РІРЅРѕРµ РѕРєРЅРѕ РїСЂРѕРіСЂР°РјРјС‹.
 //
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
 
 
-	hInst = hInstance; // Сохранить дескриптор экземпляра в глобальной переменной
-	//получаем размер окна соответствующий нужному размеру клиентской области
+	hInst = hInstance; // РЎРѕС…СЂР°РЅРёС‚СЊ РґРµСЃРєСЂРёРїС‚РѕСЂ СЌРєР·РµРјРїР»СЏСЂР° РІ РіР»РѕР±Р°Р»СЊРЅРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№
+	//РїРѕР»СѓС‡Р°РµРј СЂР°Р·РјРµСЂ РѕРєРЅР° СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёР№ РЅСѓР¶РЅРѕРјСѓ СЂР°Р·РјРµСЂСѓ РєР»РёРµРЅС‚СЃРєРѕР№ РѕР±Р»Р°СЃС‚Рё
 	AdjustWindowRect(&rcWindow, WS_OVERLAPPEDWINDOW, true);
 	hWnd = CreateWindow(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW | WM_HSCROLL | WM_VSCROLL,
 		CW_USEDEFAULT, 0, rcWindow.right - rcWindow.left, rcWindow.bottom - rcWindow.top, NULL, NULL, hInstance, NULL);
@@ -184,13 +184,13 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 }
 
 //
-//  ФУНКЦИЯ: WndProc(HWND, UINT, WPARAM, LPARAM)
+//  Р¤РЈРќРљР¦РРЇ: WndProc(HWND, UINT, WPARAM, LPARAM)
 //
-//  НАЗНАЧЕНИЕ:  обрабатывает сообщения в главном окне.
+//  РќРђР—РќРђР§Р•РќРР•:  РѕР±СЂР°Р±Р°С‚С‹РІР°РµС‚ СЃРѕРѕР±С‰РµРЅРёСЏ РІ РіР»Р°РІРЅРѕРј РѕРєРЅРµ.
 //
-//  WM_COMMAND	- обработка меню приложения
-//  WM_PAINT	-Закрасить главное окно
-//  WM_DESTROY	 - ввести сообщение о выходе и вернуться.
+//  WM_COMMAND	- РѕР±СЂР°Р±РѕС‚РєР° РјРµРЅСЋ РїСЂРёР»РѕР¶РµРЅРёСЏ
+//  WM_PAINT	-Р—Р°РєСЂР°СЃРёС‚СЊ РіР»Р°РІРЅРѕРµ РѕРєРЅРѕ
+//  WM_DESTROY	 - РІРІРµСЃС‚Рё СЃРѕРѕР±С‰РµРЅРёРµ Рѕ РІС‹С…РѕРґРµ Рё РІРµСЂРЅСѓС‚СЊСЃСЏ.
 //
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -212,35 +212,35 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		switch (wmId)
 		{
 
-		case 17://Реакция на клик ОК
+		case 17://Р РµР°РєС†РёСЏ РЅР° РєР»РёРє РћРљ
 			{
-				//срабатывает если выбранная область больше чем 100х100
+				//СЃСЂР°Р±Р°С‚С‹РІР°РµС‚ РµСЃР»Рё РІС‹Р±СЂР°РЅРЅР°СЏ РѕР±Р»Р°СЃС‚СЊ Р±РѕР»СЊС€Рµ С‡РµРј 100С…100
 				if((clientImageRect.right - clientImageRect.left) > 100 && (clientImageRect.bottom - clientImageRect.top) > 100){
-					size = (clientImageRect.right - clientImageRect.left)/4; //размер части изображения для одной игральной фишки
-					for (int i = 0; i<16; i++) //координаты левых верхних углов квадратов для отображения на фишках
+					size = (clientImageRect.right - clientImageRect.left)/4; //СЂР°Р·РјРµСЂ С‡Р°СЃС‚Рё РёР·РѕР±СЂР°Р¶РµРЅРёСЏ РґР»СЏ РѕРґРЅРѕР№ РёРіСЂР°Р»СЊРЅРѕР№ С„РёС€РєРё
+					for (int i = 0; i<16; i++) //РєРѕРѕСЂРґРёРЅР°С‚С‹ Р»РµРІС‹С… РІРµСЂС…РЅРёС… СѓРіР»РѕРІ РєРІР°РґСЂР°С‚РѕРІ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РЅР° С„РёС€РєР°С…
 					{
 						ArrPoints[i].x = size*(i % 4)+clientImageRect.left;
 						ArrPoints[i].y = size*(i / 4)+clientImageRect.top;
 					}
-					//скрыть кнопки ок и cancel
+					//СЃРєСЂС‹С‚СЊ РєРЅРѕРїРєРё РѕРє Рё cancel
 					ShowWindow(OK, SW_HIDE);	
-					ShowWindow(CANСEL, SW_HIDE);
-					//отобразить игральные фишки
+					ShowWindow(CANРЎEL, SW_HIDE);
+					//РѕС‚РѕР±СЂР°Р·РёС‚СЊ РёРіСЂР°Р»СЊРЅС‹Рµ С„РёС€РєРё
 					for (int i = 0; i < 16; ++i) 
 					{      		
 						ShowWindow(hwndButtons[i], SW_SHOW);	
 					}
 					isSelectionOfPictures = false;		
-					Refresh(); // перемешать фишки и начать новую игру
-					//установить размер клиентской области окна соответствующий размеру выбранной части изображения
-					WORD nWidth = clientImageRect.right - clientImageRect.left; // LOWORD(lParam);  ширина клиентской области
-					WORD nHeight = clientImageRect.bottom - clientImageRect.top; //HIWORD(lParam);  высота клиентской области
+					Refresh(); // РїРµСЂРµРјРµС€Р°С‚СЊ С„РёС€РєРё Рё РЅР°С‡Р°С‚СЊ РЅРѕРІСѓСЋ РёРіСЂСѓ
+					//СѓСЃС‚Р°РЅРѕРІРёС‚СЊ СЂР°Р·РјРµСЂ РєР»РёРµРЅС‚СЃРєРѕР№ РѕР±Р»Р°СЃС‚Рё РѕРєРЅР° СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёР№ СЂР°Р·РјРµСЂСѓ РІС‹Р±СЂР°РЅРЅРѕР№ С‡Р°СЃС‚Рё РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
+					WORD nWidth = clientImageRect.right - clientImageRect.left; // LOWORD(lParam);  С€РёСЂРёРЅР° РєР»РёРµРЅС‚СЃРєРѕР№ РѕР±Р»Р°СЃС‚Рё
+					WORD nHeight = clientImageRect.bottom - clientImageRect.top; //HIWORD(lParam);  РІС‹СЃРѕС‚Р° РєР»РёРµРЅС‚СЃРєРѕР№ РѕР±Р»Р°СЃС‚Рё
 					DWORD lParam = nWidth | (nHeight<<16);
 					WPARAM wParam = (WPARAM)SIZE_RESTORED;
 					SendMessage(hWnd, WM_SIZE, wParam, lParam);
 				}
 			}break;
-		case 18://Реакция на клик CANCEL
+		case 18://Р РµР°РєС†РёСЏ РЅР° РєР»РёРє CANCEL
 			{
 				xStart = yStart = xFinish = yFinish = 0;
 
@@ -250,40 +250,40 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				}
 				isSelectionOfPictures = false;			
 				ShowWindow(OK, SW_HIDE);	
-				ShowWindow(CANСEL, SW_HIDE);
-				MessageBox(hWnd,L"Откройте другое изображение либо классический вариант с нумерованными фишками (Classic)", L"Сообщение", MB_OK);
+				ShowWindow(CANРЎEL, SW_HIDE);
+				MessageBox(hWnd,L"РћС‚РєСЂРѕР№С‚Рµ РґСЂСѓРіРѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ Р»РёР±Рѕ РєР»Р°СЃСЃРёС‡РµСЃРєРёР№ РІР°СЂРёР°РЅС‚ СЃ РЅСѓРјРµСЂРѕРІР°РЅРЅС‹РјРё С„РёС€РєР°РјРё (Classic)", L"РЎРѕРѕР±С‰РµРЅРёРµ", MB_OK);
 			} break;
 		case IDM_OPEN: 
-			// Показываем на экране диалоговое окно Открыть (Open).
+			// РџРѕРєР°Р·С‹РІР°РµРј РЅР° СЌРєСЂР°РЅРµ РґРёР°Р»РѕРіРѕРІРѕРµ РѕРєРЅРѕ РћС‚РєСЂС‹С‚СЊ (Open).
 			xStart = yStart = xFinish = yFinish = 0;
 			KillTimer(hWnd, 1);
-			SetWindowText(hWnd, L"Выбор изображения");	
+			SetWindowText(hWnd, L"Р’С‹Р±РѕСЂ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ");	
 			if (GetOpenFileName(&ofn)==TRUE) {
 
 				if(CurrentBitmap!=NULL) DeleteObject(CurrentBitmap);
 
-				CurrentBitmap = ULLoadImage(ofn.lpstrFile); //создаём bitmap из выбранного пользователем изображения
+				CurrentBitmap = ULLoadImage(ofn.lpstrFile); //СЃРѕР·РґР°С‘Рј bitmap РёР· РІС‹Р±СЂР°РЅРЅРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
 
-				GetObject(CurrentBitmap, sizeof (BITMAP), &bmp); //получаем размер битмапа
-				//скрыть фишки
+				GetObject(CurrentBitmap, sizeof (BITMAP), &bmp); //РїРѕР»СѓС‡Р°РµРј СЂР°Р·РјРµСЂ Р±РёС‚РјР°РїР°
+				//СЃРєСЂС‹С‚СЊ С„РёС€РєРё
 				for (int i = 0; i < 16; ++i) 
 				{      		
 					ShowWindow(hwndButtons[i], SW_HIDE);	
 				}
-				//показать OK и CANСEL
+				//РїРѕРєР°Р·Р°С‚СЊ OK Рё CANРЎEL
 				ShowWindow(OK, SW_SHOW);	
-				ShowWindow(CANСEL, SW_SHOW);
-				//установить размер клиентской области окна соответствующий размеру выбранной части изображения, 
-				//если размер изображения больше разрешения экрана, размер устанавливается по меньшей стороне
+				ShowWindow(CANРЎEL, SW_SHOW);
+				//СѓСЃС‚Р°РЅРѕРІРёС‚СЊ СЂР°Р·РјРµСЂ РєР»РёРµРЅС‚СЃРєРѕР№ РѕР±Р»Р°СЃС‚Рё РѕРєРЅР° СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёР№ СЂР°Р·РјРµСЂСѓ РІС‹Р±СЂР°РЅРЅРѕР№ С‡Р°СЃС‚Рё РёР·РѕР±СЂР°Р¶РµРЅРёСЏ, 
+				//РµСЃР»Рё СЂР°Р·РјРµСЂ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ Р±РѕР»СЊС€Рµ СЂР°Р·СЂРµС€РµРЅРёСЏ СЌРєСЂР°РЅР°, СЂР°Р·РјРµСЂ СѓСЃС‚Р°РЅР°РІР»РёРІР°РµС‚СЃСЏ РїРѕ РјРµРЅСЊС€РµР№ СЃС‚РѕСЂРѕРЅРµ
 				RECT desktopArea;
-				//Получить размер экрана без панели задач
+				//РџРѕР»СѓС‡РёС‚СЊ СЂР°Р·РјРµСЂ СЌРєСЂР°РЅР° Р±РµР· РїР°РЅРµР»Рё Р·Р°РґР°С‡
 				SystemParametersInfo(SPI_GETWORKAREA, 0, &desktopArea, 0);
 
 				WORD nWidth = bmp.bmWidth; 
 				WORD nHeight = bmp.bmHeight;
-				//Когда посылается сообщение изменить размер окна на 40х50 это значит клиентская область будет 40х50, а само окно больше.
-				//В случае открытия изображения нам надо уменьшить само окно до x,y.
-				// padding добавляем запас для заголовка и рамки окна
+				//РљРѕРіРґР° РїРѕСЃС‹Р»Р°РµС‚СЃСЏ СЃРѕРѕР±С‰РµРЅРёРµ РёР·РјРµРЅРёС‚СЊ СЂР°Р·РјРµСЂ РѕРєРЅР° РЅР° 40С…50 СЌС‚Рѕ Р·РЅР°С‡РёС‚ РєР»РёРµРЅС‚СЃРєР°СЏ РѕР±Р»Р°СЃС‚СЊ Р±СѓРґРµС‚ 40С…50, Р° СЃР°РјРѕ РѕРєРЅРѕ Р±РѕР»СЊС€Рµ.
+				//Р’ СЃР»СѓС‡Р°Рµ РѕС‚РєСЂС‹С‚РёСЏ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ РЅР°Рј РЅР°РґРѕ СѓРјРµРЅСЊС€РёС‚СЊ СЃР°РјРѕ РѕРєРЅРѕ РґРѕ x,y.
+				// padding РґРѕР±Р°РІР»СЏРµРј Р·Р°РїР°СЃ РґР»СЏ Р·Р°РіРѕР»РѕРІРєР° Рё СЂР°РјРєРё РѕРєРЅР°
 				int padding = 100;
 				WORD maxSide = nWidth > nHeight ? nWidth : nHeight;
 				WORD destSize;
@@ -304,7 +304,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 			}
 			break;
-		case ID_Classic: //отображаем классический вариант пятнашек с цифрами
+		case ID_Classic: //РѕС‚РѕР±СЂР°Р¶Р°РµРј РєР»Р°СЃСЃРёС‡РµСЃРєРёР№ РІР°СЂРёР°РЅС‚ РїСЏС‚РЅР°С€РµРє СЃ С†РёС„СЂР°РјРё
 			{ 	
 				isClassic = true;
 				isSelectionOfPictures = false;		
@@ -313,12 +313,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 				for (int i = 0; i < 16; ++i) 
 				{      		
-					ShowWindow(hwndButtons[i], SW_SHOW);	//отображаем фишки
+					ShowWindow(hwndButtons[i], SW_SHOW);	//РѕС‚РѕР±СЂР°Р¶Р°РµРј С„РёС€РєРё
 				}
 
 				ShowWindow(OK, SW_HIDE);	
-				ShowWindow(CANСEL, SW_HIDE);
-				//передаём размер клиентской области окну такой как при создании окна  
+				ShowWindow(CANРЎEL, SW_HIDE);
+				//РїРµСЂРµРґР°С‘Рј СЂР°Р·РјРµСЂ РєР»РёРµРЅС‚СЃРєРѕР№ РѕР±Р»Р°СЃС‚Рё РѕРєРЅСѓ С‚Р°РєРѕР№ РєР°Рє РїСЂРё СЃРѕР·РґР°РЅРёРё РѕРєРЅР°  
 				DWORD lParam = rcWindow.right | ( rcWindow.bottom<<16);
 				WPARAM wParam = (WPARAM)SIZE_RESTORED;
 				SendMessage(hWnd, WM_SIZE, wParam, lParam);
@@ -341,7 +341,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 	case WM_CREATE:
 		{
-			//структура стандартного диалога открытия файла
+			//СЃС‚СЂСѓРєС‚СѓСЂР° СЃС‚Р°РЅРґР°СЂС‚РЅРѕРіРѕ РґРёР°Р»РѕРіР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р°
 			ZeroMemory(&ofn, sizeof(OPENFILENAME));
 			ofn.lStructSize = sizeof(OPENFILENAME);
 			ofn.hwndOwner = hWnd;
@@ -353,16 +353,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			ofn.nMaxFileTitle = 0;
 			ofn.lpstrInitialDir = NULL;
 			ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
-			//создание 16 -и кнопок, которые выполняют роль фишек
+			//СЃРѕР·РґР°РЅРёРµ 16 -Рё РєРЅРѕРїРѕРє, РєРѕС‚РѕСЂС‹Рµ РІС‹РїРѕР»РЅСЏСЋС‚ СЂРѕР»СЊ С„РёС€РµРє
 			for (int i=0; i < 16; i++) {
 				WButton button;
 				hwndButtons [i] = button.Create(GetModuleHandle(NULL), hWnd, BUTTON_SIZE, (HMENU)(i+1), BUTTON_SIZE * (i % 4), BUTTON_SIZE * (i / 4));
 			}
 			RECT rect;
 			GetClientRect(hWnd,&rect);
-			// создание кнопок OK и CANСEL, которые используются при выборе части изображения
+			// СЃРѕР·РґР°РЅРёРµ РєРЅРѕРїРѕРє OK Рё CANРЎEL, РєРѕС‚РѕСЂС‹Рµ РёСЃРїРѕР»СЊР·СѓСЋС‚СЃСЏ РїСЂРё РІС‹Р±РѕСЂРµ С‡Р°СЃС‚Рё РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
 			OK = CreateWindow ( L"BUTTON", L"OK", WS_CHILD | BS_PUSHBUTTON,  rect.right - 130, rect.bottom-35, 60, 30,hWnd, (HMENU)17, GetModuleHandle(NULL), NULL);
-			CANСEL = CreateWindow ( L"BUTTON", L"CANCEL", WS_CHILD | BS_PUSHBUTTON, rect.right - 65, rect.bottom-35, 60, 30,hWnd, (HMENU)18, GetModuleHandle(NULL), NULL);
+			CANРЎEL = CreateWindow ( L"BUTTON", L"CANCEL", WS_CHILD | BS_PUSHBUTTON, rect.right - 65, rect.bottom-35, 60, 30,hWnd, (HMENU)18, GetModuleHandle(NULL), NULL);
 
 		}break;
 
@@ -370,39 +370,39 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 			HDC ArrComHDC[16];
 			hdc = BeginPaint(hWnd, &ps);
-			if(!isSelectionOfPictures){ //если не режим выбора изображения
+			if(!isSelectionOfPictures){ //РµСЃР»Рё РЅРµ СЂРµР¶РёРј РІС‹Р±РѕСЂР° РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
 				RECT rect_butt;
 				PAINTSTRUCT ArrPS[16] = {0};
 				HDC ArrHDC[16];
-				GetClientRect(hwndButtons[0],&rect_butt); //получаем размер фишки
+				GetClientRect(hwndButtons[0],&rect_butt); //РїРѕР»СѓС‡Р°РµРј СЂР°Р·РјРµСЂ С„РёС€РєРё
 				if(isClassic)
 				{
 
-					for(int i = 0; i < 16; i++){//рисуем свой битмап на каждую кнопку
-						NumBitmap = vectorNumberBitmap[i]; //номер битмапа в массиве битмапов
-						ArrHDC[i] = BeginPaint(hwndButtons[i],&ArrPS[i]); //получаем контекст устройства для каждой кнопки
-						ArrComHDC[i] = CreateCompatibleDC(ArrHDC[i]); //получаем контекст памяти
-						SelectObject(ArrComHDC[i], hBitmaps[NumBitmap]); //выбираем в контекст памяти битмап
-						StretchBlt(ArrHDC[i],0, 0, rect_butt.right, rect_butt.bottom, ArrComHDC[i], 0, 0, 100,100, SRCCOPY);//копируем битмап из контекста памяти в контекст кнопки
+					for(int i = 0; i < 16; i++){//СЂРёСЃСѓРµРј СЃРІРѕР№ Р±РёС‚РјР°Рї РЅР° РєР°Р¶РґСѓСЋ РєРЅРѕРїРєСѓ
+						NumBitmap = vectorNumberBitmap[i]; //РЅРѕРјРµСЂ Р±РёС‚РјР°РїР° РІ РјР°СЃСЃРёРІРµ Р±РёС‚РјР°РїРѕРІ
+						ArrHDC[i] = BeginPaint(hwndButtons[i],&ArrPS[i]); //РїРѕР»СѓС‡Р°РµРј РєРѕРЅС‚РµРєСЃС‚ СѓСЃС‚СЂРѕР№СЃС‚РІР° РґР»СЏ РєР°Р¶РґРѕР№ РєРЅРѕРїРєРё
+						ArrComHDC[i] = CreateCompatibleDC(ArrHDC[i]); //РїРѕР»СѓС‡Р°РµРј РєРѕРЅС‚РµРєСЃС‚ РїР°РјСЏС‚Рё
+						SelectObject(ArrComHDC[i], hBitmaps[NumBitmap]); //РІС‹Р±РёСЂР°РµРј РІ РєРѕРЅС‚РµРєСЃС‚ РїР°РјСЏС‚Рё Р±РёС‚РјР°Рї
+						StretchBlt(ArrHDC[i],0, 0, rect_butt.right, rect_butt.bottom, ArrComHDC[i], 0, 0, 100,100, SRCCOPY);//РєРѕРїРёСЂСѓРµРј Р±РёС‚РјР°Рї РёР· РєРѕРЅС‚РµРєСЃС‚Р° РїР°РјСЏС‚Рё РІ РєРѕРЅС‚РµРєСЃС‚ РєРЅРѕРїРєРё
 					}		
-					for(int i = 0; i < 16; i++){//освобождаем контексты
+					for(int i = 0; i < 16; i++){//РѕСЃРІРѕР±РѕР¶РґР°РµРј РєРѕРЅС‚РµРєСЃС‚С‹
 						DeleteDC(ArrHDC[i]); 
 						DeleteDC(ArrComHDC[i]); 
 					}
 				}
-				else//вариант игры с изображением
+				else//РІР°СЂРёР°РЅС‚ РёРіСЂС‹ СЃ РёР·РѕР±СЂР°Р¶РµРЅРёРµРј
 				{
 					for(int i = 0; i < 16; i++)
 					{
 
-						ArrHDC[i] = BeginPaint(hwndButtons[i],&ArrPS[i]); //получаем контекст устройства для каждой кнопки
+						ArrHDC[i] = BeginPaint(hwndButtons[i],&ArrPS[i]); //РїРѕР»СѓС‡Р°РµРј РєРѕРЅС‚РµРєСЃС‚ СѓСЃС‚СЂРѕР№СЃС‚РІР° РґР»СЏ РєР°Р¶РґРѕР№ РєРЅРѕРїРєРё
 					}
-					ArrComHDC[0] = CreateCompatibleDC(ArrHDC[0]); //содаём один контекст памяти
-					SelectObject(ArrComHDC[0], CurrentBitmap); //выбераем изображение
+					ArrComHDC[0] = CreateCompatibleDC(ArrHDC[0]); //СЃРѕРґР°С‘Рј РѕРґРёРЅ РєРѕРЅС‚РµРєСЃС‚ РїР°РјСЏС‚Рё
+					SelectObject(ArrComHDC[0], CurrentBitmap); //РІС‹Р±РµСЂР°РµРј РёР·РѕР±СЂР°Р¶РµРЅРёРµ
 					for(int i = 0; i < 16; i++)
 					{		
-						NumBitmap = vectorNumberBitmap[i];  //номер части битмапа 
-						//копируем соответствующую часть изображения на каждую кнопку
+						NumBitmap = vectorNumberBitmap[i];  //РЅРѕРјРµСЂ С‡Р°СЃС‚Рё Р±РёС‚РјР°РїР° 
+						//РєРѕРїРёСЂСѓРµРј СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰СѓСЋ С‡Р°СЃС‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ РЅР° РєР°Р¶РґСѓСЋ РєРЅРѕРїРєСѓ
 						StretchBlt(ArrHDC[i],0, 0, rect_butt.right, rect_butt.bottom, ArrComHDC[0], 
 							ArrPoints[NumBitmap].x,  ArrPoints[NumBitmap].y, size, size, SRCCOPY);
 
@@ -412,14 +412,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 					}
 					DeleteDC(ArrComHDC[0]); 
 				}
-			} else{//режим выбора части изображения для игры
+			} else{//СЂРµР¶РёРј РІС‹Р±РѕСЂР° С‡Р°СЃС‚Рё РёР·РѕР±СЂР°Р¶РµРЅРёСЏ РґР»СЏ РёРіСЂС‹
 
-				ArrComHDC[0] = CreateCompatibleDC(hdc); //содаём один контекст памяти
-				SelectObject(ArrComHDC[0], CurrentBitmap); //выбираем битмап загруженный пользователем
-				StretchBlt(hdc,0, 0,  bmp.bmWidth, bmp.bmHeight, ArrComHDC[0], 0, 0, bmp.bmWidth, bmp.bmHeight, SRCCOPY); //копируем битмап на контекст главного окна
-				DeleteDC(ArrComHDC[0]); //освобождаем контекст памяти
-				SelectObject (hdc, GetStockObject (NULL_BRUSH)); //выбираем прозрачную кисть		
-				//определяем размеры квадрата выбора части изображения
+				ArrComHDC[0] = CreateCompatibleDC(hdc); //СЃРѕРґР°С‘Рј РѕРґРёРЅ РєРѕРЅС‚РµРєСЃС‚ РїР°РјСЏС‚Рё
+				SelectObject(ArrComHDC[0], CurrentBitmap); //РІС‹Р±РёСЂР°РµРј Р±РёС‚РјР°Рї Р·Р°РіСЂСѓР¶РµРЅРЅС‹Р№ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј
+				StretchBlt(hdc,0, 0,  bmp.bmWidth, bmp.bmHeight, ArrComHDC[0], 0, 0, bmp.bmWidth, bmp.bmHeight, SRCCOPY); //РєРѕРїРёСЂСѓРµРј Р±РёС‚РјР°Рї РЅР° РєРѕРЅС‚РµРєСЃС‚ РіР»Р°РІРЅРѕРіРѕ РѕРєРЅР°
+				DeleteDC(ArrComHDC[0]); //РѕСЃРІРѕР±РѕР¶РґР°РµРј РєРѕРЅС‚РµРєСЃС‚ РїР°РјСЏС‚Рё
+				SelectObject (hdc, GetStockObject (NULL_BRUSH)); //РІС‹Р±РёСЂР°РµРј РїСЂРѕР·СЂР°С‡РЅСѓСЋ РєРёСЃС‚СЊ		
+				//РѕРїСЂРµРґРµР»СЏРµРј СЂР°Р·РјРµСЂС‹ РєРІР°РґСЂР°С‚Р° РІС‹Р±РѕСЂР° С‡Р°СЃС‚Рё РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
 				int MinSizeClientRect = abs(xFinish-xStart) < abs(yFinish-yStart) ? abs(xFinish-xStart) : abs(yFinish-yStart);
 				int left, right, top, bottom;
 				if (xStart < xFinish) {
@@ -437,9 +437,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 					top = yStart - MinSizeClientRect;
 					bottom = yStart;
 				}
-				//рисуем квадрат
+				//СЂРёСЃСѓРµРј РєРІР°РґСЂР°С‚
 				Rectangle(hdc, left, top, right, bottom);
-				//записываем результирующий квадрат в структуру RECT
+				//Р·Р°РїРёСЃС‹РІР°РµРј СЂРµР·СѓР»СЊС‚РёСЂСѓСЋС‰РёР№ РєРІР°РґСЂР°С‚ РІ СЃС‚СЂСѓРєС‚СѓСЂСѓ RECT
 				clientImageRect.left = left;
 				clientImageRect.top = top;
 				clientImageRect.right = right;
@@ -451,16 +451,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 	case WM_LBUTTONDOWN:
 		{
-			//запоминаем стартовую точку квадрата
+			//Р·Р°РїРѕРјРёРЅР°РµРј СЃС‚Р°СЂС‚РѕРІСѓСЋ С‚РѕС‡РєСѓ РєРІР°РґСЂР°С‚Р°
 			dblClick = false;
 			xStart = LOWORD(lParam);
 			yStart = HIWORD(lParam);
 			break;
 		}
 	case WM_LBUTTONUP:
-		if (!dblClick)//игнорируем двойной щелчёк
+		if (!dblClick)//РёРіРЅРѕСЂРёСЂСѓРµРј РґРІРѕР№РЅРѕР№ С‰РµР»С‡С‘Рє
 		{
-			//конечная точка
+			//РєРѕРЅРµС‡РЅР°СЏ С‚РѕС‡РєР°
 			xFinish = LOWORD(lParam);
 			yFinish = HIWORD(lParam);
 			InvalidateRect(hWnd,NULL,NULL);
@@ -469,8 +469,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		}
 		break;
 	case WM_MOUSEMOVE:
-		if(MK_LBUTTON == wParam)//если кнопка зажата
-		{  //конечная точка
+		if(MK_LBUTTON == wParam)//РµСЃР»Рё РєРЅРѕРїРєР° Р·Р°Р¶Р°С‚Р°
+		{  //РєРѕРЅРµС‡РЅР°СЏ С‚РѕС‡РєР°
 			xFinish = LOWORD(lParam);
 			yFinish = HIWORD(lParam);
 			InvalidateRect(hWnd,NULL,NULL);
@@ -482,37 +482,37 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 			RECT rcWindow;
 			RECT rect;
-			//размеры клиентской области окна
+			//СЂР°Р·РјРµСЂС‹ РєР»РёРµРЅС‚СЃРєРѕР№ РѕР±Р»Р°СЃС‚Рё РѕРєРЅР°
 			int width = LOWORD(lParam);
 			int height = HIWORD(lParam);
-			//размеры окна
+			//СЂР°Р·РјРµСЂС‹ РѕРєРЅР°
 			GetWindowRect(hWnd,&rect);
 			int wWidth = rect.right - rect.left;
 			int wHeight = rect.bottom - rect.top;
 			int wMax = wWidth>wHeight?wWidth:wHeight;
 			int cMax = width>height?width:height;
-			//определение размера кнопок (фишки)
+			//РѕРїСЂРµРґРµР»РµРЅРёРµ СЂР°Р·РјРµСЂР° РєРЅРѕРїРѕРє (С„РёС€РєРё)
 			double deltaButt = SIZE_CLIENT_SQUARE/BUTTON_SIZE;
 			double sizeButton = ((double)cMax)/deltaButt;
 			rcWindow.left = 0; rcWindow.top = 0; rcWindow.right = cMax; rcWindow.bottom = cMax; 
-			AdjustWindowRect(&rcWindow, WS_OVERLAPPEDWINDOW, true);//получаем размер окна соответствующий нужному размеру клиентской области
-			//перерисовываем окно с новыми размерами и координатами
+			AdjustWindowRect(&rcWindow, WS_OVERLAPPEDWINDOW, true);//РїРѕР»СѓС‡Р°РµРј СЂР°Р·РјРµСЂ РѕРєРЅР° СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёР№ РЅСѓР¶РЅРѕРјСѓ СЂР°Р·РјРµСЂСѓ РєР»РёРµРЅС‚СЃРєРѕР№ РѕР±Р»Р°СЃС‚Рё
+			//РїРµСЂРµСЂРёСЃРѕРІС‹РІР°РµРј РѕРєРЅРѕ СЃ РЅРѕРІС‹РјРё СЂР°Р·РјРµСЂР°РјРё Рё РєРѕРѕСЂРґРёРЅР°С‚Р°РјРё
 			MoveWindow(hWnd, rect.left, rect.top, rcWindow.right - rcWindow.left , rcWindow.bottom - rcWindow.top, true);
-			//перерисовываем кнопки с новыми размерами и координатами
+			//РїРµСЂРµСЂРёСЃРѕРІС‹РІР°РµРј РєРЅРѕРїРєРё СЃ РЅРѕРІС‹РјРё СЂР°Р·РјРµСЂР°РјРё Рё РєРѕРѕСЂРґРёРЅР°С‚Р°РјРё
 			for (int i = 0; i < 16; i++)
 				MoveWindow(hwndButtons[i], sizeButton*(i%4), sizeButton*(i/4), sizeButton, sizeButton, true);
-			//позиционирование кнопок OK и CANСEL 
+			//РїРѕР·РёС†РёРѕРЅРёСЂРѕРІР°РЅРёРµ РєРЅРѕРїРѕРє OK Рё CANРЎEL 
 			GetClientRect(hWnd,&rect);
 			MoveWindow(OK, rect.right - 130, rect.bottom-35, 60, 30, true);
-			MoveWindow(CANСEL, rect.right - 65, rect.bottom-35, 60, 30, true);
+			MoveWindow(CANРЎEL, rect.right - 65, rect.bottom-35, 60, 30, true);
 
 			SendMessage(hWnd, WM_PAINT, NULL, NULL);
 		} break; 
 	case WM_TIMER:
 		{
-			timeOfGame++; //время игры
+			timeOfGame++; //РІСЂРµРјСЏ РёРіСЂС‹
 			TCHAR buffTime[300] = {0};
-			swprintf_s(buffTime,300,L"%d мин. %d сек.",timeOfGame/60, timeOfGame%60);
+			swprintf_s(buffTime,300,L"%d РјРёРЅ. %d СЃРµРє.",timeOfGame/60, timeOfGame%60);
 			SetWindowText(hWnd, buffTime);					
 		} break;
 	case WM_CLOSE:
@@ -537,7 +537,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	return TRUE;
 }
 
-// Обработчик сообщений для окна "О программе".
+// РћР±СЂР°Р±РѕС‚С‡РёРє СЃРѕРѕР±С‰РµРЅРёР№ РґР»СЏ РѕРєРЅР° "Рћ РїСЂРѕРіСЂР°РјРјРµ".
 INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	UNREFERENCED_PARAMETER(lParam);
@@ -557,7 +557,7 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 	return (INT_PTR)FALSE;
 }
 void ChangeButton(HWND pressedButton){
-	//определяем ID нажатой кнопки (фишки) и пустой кнопки
+	//РѕРїСЂРµРґРµР»СЏРµРј ID РЅР°Р¶Р°С‚РѕР№ РєРЅРѕРїРєРё (С„РёС€РєРё) Рё РїСѓСЃС‚РѕР№ РєРЅРѕРїРєРё
 	int ID_Empty = GetWindowLong (ButtonEmpty, GWL_ID);
 	int ID_pressed = GetWindowLong (pressedButton, GWL_ID);
 
@@ -565,36 +565,36 @@ void ChangeButton(HWND pressedButton){
 		(ID_pressed+1==ID_Empty&& ID_pressed!=4 && ID_pressed!=8 && ID_pressed!=12)||
 		ID_pressed-4==ID_Empty||
 		ID_pressed+4==ID_Empty)
-	{//если пустая и нажатая соседние 
+	{//РµСЃР»Рё РїСѓСЃС‚Р°СЏ Рё РЅР°Р¶Р°С‚Р°СЏ СЃРѕСЃРµРґРЅРёРµ 
 
-		klick++;//подсчёт количества кликов
+		klick++;//РїРѕРґСЃС‡С‘С‚ РєРѕР»РёС‡РµСЃС‚РІР° РєР»РёРєРѕРІ
 
-		std::swap ( vectorNumberBitmap[ID_Empty-1] , vectorNumberBitmap[ID_pressed-1] );//меняем местами номер нажатого и пустого битмапа или части картинки 
-		DistributeBitmaps();//функция отображает скрытую кнопку и скрывает новую
+		std::swap ( vectorNumberBitmap[ID_Empty-1] , vectorNumberBitmap[ID_pressed-1] );//РјРµРЅСЏРµРј РјРµСЃС‚Р°РјРё РЅРѕРјРµСЂ РЅР°Р¶Р°С‚РѕРіРѕ Рё РїСѓСЃС‚РѕРіРѕ Р±РёС‚РјР°РїР° РёР»Рё С‡Р°СЃС‚Рё РєР°СЂС‚РёРЅРєРё 
+		DistributeBitmaps();//С„СѓРЅРєС†РёСЏ РѕС‚РѕР±СЂР°Р¶Р°РµС‚ СЃРєСЂС‹С‚СѓСЋ РєРЅРѕРїРєСѓ Рё СЃРєСЂС‹РІР°РµС‚ РЅРѕРІСѓСЋ
 
-		if(ItsWin()){//если победа
-			KillTimer(hWnd, 1);//останавливаем таймер
-			//показываем количество кликов (ходов), и время игры 
+		if(ItsWin()){//РµСЃР»Рё РїРѕР±РµРґР°
+			KillTimer(hWnd, 1);//РѕСЃС‚Р°РЅР°РІР»РёРІР°РµРј С‚Р°Р№РјРµСЂ
+			//РїРѕРєР°Р·С‹РІР°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ РєР»РёРєРѕРІ (С…РѕРґРѕРІ), Рё РІСЂРµРјСЏ РёРіСЂС‹ 
 			TCHAR BuffMessVictory[300] = {0};
-			swprintf_s(BuffMessVictory,300,L"Победа! За %d кликов и %d мин. %d сек.", klick, timeOfGame/60, timeOfGame%60);
-			MessageBox(hWnd,BuffMessVictory, L"Сообщение", MB_OK);				
+			swprintf_s(BuffMessVictory,300,L"РџРѕР±РµРґР°! Р—Р° %d РєР»РёРєРѕРІ Рё %d РјРёРЅ. %d СЃРµРє.", klick, timeOfGame/60, timeOfGame%60);
+			MessageBox(hWnd,BuffMessVictory, L"РЎРѕРѕР±С‰РµРЅРёРµ", MB_OK);				
 		} 
 
 	}
 
 }
 
-void Refresh(){//начало новой игры
+void Refresh(){//РЅР°С‡Р°Р»Рѕ РЅРѕРІРѕР№ РёРіСЂС‹
 	vectorNumberBitmap.clear();
-	for (int i = 0; i < 16; ++i) //заполняем вектор номерами
+	for (int i = 0; i < 16; ++i) //Р·Р°РїРѕР»РЅСЏРµРј РІРµРєС‚РѕСЂ РЅРѕРјРµСЂР°РјРё
 	{ 
 		vectorNumberBitmap.push_back(i);
 	}
 
-	std::random_shuffle( vectorNumberBitmap.begin(), vectorNumberBitmap.end() );//перемешать 
+	std::random_shuffle( vectorNumberBitmap.begin(), vectorNumberBitmap.end() );//РїРµСЂРµРјРµС€Р°С‚СЊ 
 
 	DistributeBitmaps();
-	//обнуляем счётчики и запускаем таймер
+	//РѕР±РЅСѓР»СЏРµРј СЃС‡С‘С‚С‡РёРєРё Рё Р·Р°РїСѓСЃРєР°РµРј С‚Р°Р№РјРµСЂ
 	klick = 0;
 	timeOfGame = 0;
 	SetTimer(hWnd,1,1000,NULL );
@@ -603,22 +603,22 @@ void Refresh(){//начало новой игры
 
 void DistributeBitmaps()
 {
-	ShowWindow(ButtonEmpty, SW_SHOW);//показать предыдущую скрытую кнопку
+	ShowWindow(ButtonEmpty, SW_SHOW);//РїРѕРєР°Р·Р°С‚СЊ РїСЂРµРґС‹РґСѓС‰СѓСЋ СЃРєСЂС‹С‚СѓСЋ РєРЅРѕРїРєСѓ
 
 	for (int i = 0; i < 16; ++i) 
 	{      
-		if(vectorNumberBitmap[i]==15)//находим индекс номера 15 (всегда пустой)
+		if(vectorNumberBitmap[i]==15)//РЅР°С…РѕРґРёРј РёРЅРґРµРєСЃ РЅРѕРјРµСЂР° 15 (РІСЃРµРіРґР° РїСѓСЃС‚РѕР№)
 		{
-			ButtonEmpty = hwndButtons[i];//присваиваем статус кнопке по найденному индексу как пустая
-			ShowWindow(hwndButtons[i], SW_HIDE);//скрываем новую пустую кнопку
+			ButtonEmpty = hwndButtons[i];//РїСЂРёСЃРІР°РёРІР°РµРј СЃС‚Р°С‚СѓСЃ РєРЅРѕРїРєРµ РїРѕ РЅР°Р№РґРµРЅРЅРѕРјСѓ РёРЅРґРµРєСЃСѓ РєР°Рє РїСѓСЃС‚Р°СЏ
+			ShowWindow(hwndButtons[i], SW_HIDE);//СЃРєСЂС‹РІР°РµРј РЅРѕРІСѓСЋ РїСѓСЃС‚СѓСЋ РєРЅРѕРїРєСѓ
 		}
 	}
 }
-bool ItsWin(){//определить победа или нет
+bool ItsWin(){//РѕРїСЂРµРґРµР»РёС‚СЊ РїРѕР±РµРґР° РёР»Рё РЅРµС‚
 	int counter = 0;
-	for (int i = 0; i < 16; ++i) //если номера соответствуют индексам значит победа 
+	for (int i = 0; i < 16; ++i) //РµСЃР»Рё РЅРѕРјРµСЂР° СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‚ РёРЅРґРµРєСЃР°Рј Р·РЅР°С‡РёС‚ РїРѕР±РµРґР° 
 	{ 
-		if(vectorNumberBitmap[i]!=i) //при первом несовпадении номера и индекса возвращаем false
+		if(vectorNumberBitmap[i]!=i) //РїСЂРё РїРµСЂРІРѕРј РЅРµСЃРѕРІРїР°РґРµРЅРёРё РЅРѕРјРµСЂР° Рё РёРЅРґРµРєСЃР° РІРѕР·РІСЂР°С‰Р°РµРј false
 		{
 			return false;
 		}
@@ -627,7 +627,7 @@ bool ItsWin(){//определить победа или нет
 			counter++;
 		}	
 	}	
-	if(counter==15)//если совпали все, то возвращаем true
+	if(counter==15)//РµСЃР»Рё СЃРѕРІРїР°Р»Рё РІСЃРµ, С‚Рѕ РІРѕР·РІСЂР°С‰Р°РµРј true
 	{
 		return true;
 	}
@@ -640,23 +640,23 @@ HBITMAP ULLoadImage(LPCTSTR szResource)
 	IPicture* m_pPicture;   
 	LPVOID pNewMem=NULL;
 
-	//создаём поток из фаила
+	//СЃРѕР·РґР°С‘Рј РїРѕС‚РѕРє РёР· С„Р°РёР»Р°
 	hr=SHCreateStreamOnFile(szResource,STGM_SHARE_EXCLUSIVE,&pStream);
 	if(hr!=S_OK)
 		return NULL;
 
-	//загружаем картинку из потока
+	//Р·Р°РіСЂСѓР¶Р°РµРј РєР°СЂС‚РёРЅРєСѓ РёР· РїРѕС‚РѕРєР°
 	hr = OleLoadPicture(pStream,0,true,IID_IPicture,(void**)&m_pPicture);
 	if((hr!=S_OK)||(m_pPicture==NULL))
 		return NULL;
 	HBITMAP hBitmap=NULL;
-	//получаем хендл битмапа
+	//РїРѕР»СѓС‡Р°РµРј С…РµРЅРґР» Р±РёС‚РјР°РїР°
 	m_pPicture->get_Handle((OLE_HANDLE*)(UINT*)&hBitmap);
-	//получаем размер битмапа
+	//РїРѕР»СѓС‡Р°РµРј СЂР°Р·РјРµСЂ Р±РёС‚РјР°РїР°
 	BITMAP bmp;
 	if(GetObject(hBitmap,sizeof(BITMAP),&bmp)==0)
 		return NULL;
-	//копируем битмап
+	//РєРѕРїРёСЂСѓРµРј Р±РёС‚РјР°Рї
 	HDC hDTDC=GetDC(NULL);
 	HDC hSrcDC=CreateCompatibleDC(hDTDC);
 	hBitmap=(HBITMAP)SelectObject(hSrcDC,hBitmap);
@@ -666,7 +666,7 @@ HBITMAP ULLoadImage(LPCTSTR szResource)
 	BitBlt(hDestDC,0,0,bmp.bmWidth,bmp.bmHeight,hSrcDC,0,0,SRCCOPY);
 	SelectObject(hSrcDC,hBitmap);
 	hBitmapRet=(HBITMAP)SelectObject(hDestDC,hBitmapRet);
-	//освобождаем ресурсы
+	//РѕСЃРІРѕР±РѕР¶РґР°РµРј СЂРµСЃСѓСЂСЃС‹
 	DeleteDC(hSrcDC);
 	DeleteDC(hDestDC);    
 	ReleaseDC(NULL,hDTDC);
