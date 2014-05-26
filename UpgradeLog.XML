@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="Barley_Break">
+</Property><Property Name="Solution File" Value="C:\Users\azapriy\Documents\Visual Studio 2010\Projects\Barley_Break\Barley_Break.sln">
+</Property><Property Name="Date" Value="Thursday, March 13, 2014">
+</Property><Property Name="Time" Value="12:39 PM">
+</Property></Properties><Event ErrorLevel="0" Project="Barley_Break" Source="Barley_Break\Barley_Break.vcproj" Description="Converting project file 'C:\Users\azapriy\Documents\Visual Studio 2010\Projects\Barley_Break\Barley_Break\Barley_Break.vcproj'.">
+</Event><Event ErrorLevel="1" Project="Barley_Break" Source="Barley_Break\Barley_Break.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="0" Project="Barley_Break" Source="Barley_Break\Barley_Break.vcproj" Description="Done converting to new project file 'C:\Users\azapriy\Documents\Visual Studio 2010\Projects\Barley_Break\Barley_Break\Barley_Break.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="Barley_Break" Source="Barley_Break\Barley_Break.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="Barley_Break.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="Barley_Break.sln" Description="Converted">
+</Event></UpgradeLog>
